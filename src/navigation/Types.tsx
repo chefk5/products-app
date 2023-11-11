@@ -2,6 +2,7 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from "@react-navigation/stack";
+import { ProductDetails } from "../app/types";
 
 export enum MainRoutes {
   Products = "Products",
@@ -10,7 +11,7 @@ export enum MainRoutes {
 
 export type MainStackParamList = {
   [MainRoutes.Products]: undefined;
-  [MainRoutes.Details]: undefined;
+  [MainRoutes.Details]: ProductDetails;
 };
 
 export type MainNavigationProp<

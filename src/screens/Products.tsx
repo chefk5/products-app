@@ -12,29 +12,61 @@ import { FlashList } from "@shopify/flash-list";
 import ProductsList from "../components/ProductsList";
 import { Product } from "../app/types";
 import { colors } from "../styles/theme";
+import { MainNavigationProp, MainRoutes } from "../navigation/Types";
+import Loader from "../components/Loader";
+import ErrorComponent from "../components/ErrorCompoenent";
 
-type Props = {};
+interface ProductsProps {
+  navigation: MainNavigationProp<MainRoutes.Products>;
+}
 
-const Products = ({ navigation }) => {
-  const { isLoading, isError, data } = useQuery({
+const Products = ({ navigation }: ProductsProps) => {
+  const { isLoading, isError, data, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
 
+  const openDetailsScreen = (id: number) => {
+    const selectedItem = data?.find((product) => product.id === id);
+
+    if (selectedItem) {
+      const { id, title, images, price, rating, brand, description } =
+        selectedItem;
+
+      const selectedItemDetails = {
+        id,
+        title,
+        images,
+        price,
+        rating,
+        brand,
+        description,
+      };
+      navigation.navigate(MainRoutes.Details, selectedItemDetails);
+    }
+  };
+
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={styles.container}>
+        <Loader />
+      </View>
+    );
   }
 
   if (isError) {
-    return <Text>Error fetching data</Text>;
+    return (
+      <View style={styles.container}>
+        <ErrorComponent onRetry={refetch} />
+      </View>
+    );
   }
 
   return (
     <View style={styles.container}>
-      {data && <ProductsList products={data} />}
-      {/* <TouchableOpacity
-        onPress={() => navigation.navigate("Details")}
-      ></TouchableOpacity> */}
+      {data && (
+        <ProductsList products={data} navigationFunc={openDetailsScreen} />
+      )}
     </View>
   );
 };

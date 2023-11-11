@@ -3,12 +3,14 @@ import React, { FC } from "react";
 import ProductCard from "./ProductCard";
 import { Product, ProductCardType } from "../app/types";
 import { FlashList } from "@shopify/flash-list";
+import { MainNavigationProp, MainRoutes } from "../navigation/Types";
 
 interface IProductsList {
   products: Product[];
+  navigationFunc: (id: number) => void;
 }
 
-const ProductsList: React.FC<IProductsList> = ({ products }) => {
+const ProductsList = ({ products, navigationFunc }: IProductsList) => {
   return (
     <View style={styles.container}>
       <FlashList
@@ -21,9 +23,11 @@ const ProductsList: React.FC<IProductsList> = ({ products }) => {
             price={item.price}
             rating={item.rating}
             brand={item.brand}
+            navigationFunc={navigationFunc}
           />
         )}
         estimatedItemSize={250}
+        contentContainerStyle={{ paddingBottom: 50 }}
       />
     </View>
   );

@@ -1,10 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { ProductCardType } from "../app/types";
+import { ProductCardType, ProductDetails } from "../app/types";
 import { colors, fontSizes, mainStyles } from "../styles/theme";
 import { Image } from "expo-image";
 import StyledText from "./common/styledText";
 import { AntDesign } from "@expo/vector-icons";
+import { MainNavigationProp, MainRoutes } from "../navigation/Types";
+
+type ProductCardProps = ProductCardType & {
+  navigationFunc: (id: number) => void;
+};
+
 const ProductCard = ({
   id,
   title,
@@ -12,12 +18,13 @@ const ProductCard = ({
   price,
   rating,
   brand,
-}: ProductCardType) => {
+  navigationFunc,
+}: ProductCardProps) => {
   // const blurhash =
   //   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={() => navigationFunc(id)}>
       <View>
         <Image
           style={styles.image}
