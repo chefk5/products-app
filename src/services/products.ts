@@ -11,3 +11,9 @@ export const fetchProducts = async (): Promise<Product[]> => {
     await axiosInstance.get("/products");
   return response.data.products;
 };
+
+export const searchProducts = async (term: string): Promise<Product[]> => {
+  const response: AxiosResponse<{ products: Product[] }> =
+    await axiosInstance.get(`/products/search?q=${term}`);
+  return response.data.products;
+};

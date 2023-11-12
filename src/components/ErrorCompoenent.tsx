@@ -3,9 +3,15 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import StyledText from "./common/styledText";
 import { colors, fontSizes } from "../styles/theme";
 type ErrorComponentProps = {
-  onRetry: () => void; // Define the type for onRetry
+  onRetry: () => void;
+  msg: string;
+  shouldRetry?: boolean;
 };
-const ErrorComponent = ({ onRetry }: ErrorComponentProps) => {
+const ErrorComponent = ({
+  onRetry,
+  msg,
+  shouldRetry = true,
+}: ErrorComponentProps) => {
   return (
     <View style={styles.container}>
       <StyledText
@@ -13,11 +19,13 @@ const ErrorComponent = ({ onRetry }: ErrorComponentProps) => {
         size={fontSizes.md}
         customStyles={styles.errorMessage}
       >
-        Error fetching data from the server.
+        {msg}
       </StyledText>
-      <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
-        <Text style={styles.retryText}>Retry</Text>
-      </TouchableOpacity>
+      {shouldRetry && (
+        <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
+          <Text style={styles.retryText}>Retry</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

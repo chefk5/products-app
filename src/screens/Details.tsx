@@ -2,24 +2,20 @@ import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
 import React, { useRef, useState } from "react";
 import { colors, fontSizes, mainStyles } from "../styles/theme";
 import StyledText from "../components/common/styledText";
-import { ProductDetails } from "../app/types";
-import { RouteProp } from "@react-navigation/native";
 import {
   MainStackParamList,
   MainRoutes,
   MainNavigationProp,
 } from "../navigation/Types";
 import { Image } from "expo-image";
+import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+import { MotiImage } from "moti";
 
-type DetailsRouteProp = RouteProp<MainStackParamList, MainRoutes.Details>;
-
-type DetailsProps = {
-  navigation: MainNavigationProp<MainRoutes.Details>;
-  route: DetailsRouteProp;
-};
 const { height } = Dimensions.get("window");
 
-const Details = ({ navigation, route }: DetailsProps) => {
+const Details = ({
+  route,
+}: StackScreenProps<MainStackParamList, MainRoutes.Details>) => {
   const [containerHeight, setContainerHeight] = useState(0);
 
   const onContentSizeChange = (contentWidth, contentHeight) => {
@@ -36,17 +32,22 @@ const Details = ({ navigation, route }: DetailsProps) => {
       <View style={styles.header}>
         <StyledText fontWeight="700" size={fontSizes.md2}>
           {route.params?.title}
-          height {height}
         </StyledText>
         <StyledText color={colors.textTernary}>
           {route.params?.brand}
         </StyledText>
       </View>
 
-      <Image
+      <MotiImage
         style={styles.image}
         source={{ uri: route.params?.images[0] }}
-        contentFit="cover"
+        resizeMode="contain"
+        from={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          type: "timing",
+          duration: 1000,
+        }}
       />
       <View style={styles.body}>
         <StyledText

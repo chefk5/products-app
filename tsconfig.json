@@ -1,6 +1,8 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "types": ["@testing-library/jest-native", "jest"]
+  },
+  "include": ["./jest-setup.ts"]
 }

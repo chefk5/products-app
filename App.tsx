@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import HomeStack from "./src/navigation/HomeStack";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
+import * as SplashScreen from "expo-splash-screen";
+
 const queryClient = new QueryClient();
 
 export default function App() {

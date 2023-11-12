@@ -1,35 +1,81 @@
-import { View, Text, StyleSheet } from "react-native";
-import React, { FC } from "react";
+import { View, Text, StyleSheet, FlatList, RefreshControl } from "react-native";
+import React, { FC, useState } from "react";
 import ProductCard from "./ProductCard";
 import { Product, ProductCardType } from "../app/types";
 import { FlashList } from "@shopify/flash-list";
 import { MainNavigationProp, MainRoutes } from "../navigation/Types";
+import { colors, fontSizes } from "../styles/theme";
+import StyledText from "./common/styledText";
+import ErrorComponent from "./ErrorCompoenent";
+import Loader from "./Loader";
 
 interface IProductsList {
   products: Product[];
   navigationFunc: (id: number) => void;
+  onRetry: () => void;
+  isError: boolean;
+  isLoading: boolean;
+  isSearchTerm: boolean;
 }
 
-const ProductsList = ({ products, navigationFunc }: IProductsList) => {
+const ProductsList = ({
+  products,
+  navigationFunc,
+  onRetry,
+  isError,
+  isLoading,
+  isSearchTerm,
+}: IProductsList) => {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const shouldShouldError =
+    (!products || products?.length === 0 || isError) && !isLoading;
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await onRetry();
+    setRefreshing(false);
+  };
+
+  if (shouldShouldError) {
+    return (
+      <View style={styles.container}>
+        <ErrorComponent
+          msg={"No Products available"}
+          onRetry={onRetry}
+          shouldRetry={!isSearchTerm}
+        />
+      </View>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <Loader />
+      </View>
+    );
+  }
   return (
-    <View style={styles.container}>
-      <FlashList
-        data={products}
-        renderItem={({ item }) => (
-          <ProductCard
-            id={item.id}
-            title={item.title}
-            images={item.images}
-            price={item.price}
-            rating={item.rating}
-            brand={item.brand}
-            navigationFunc={navigationFunc}
-          />
-        )}
-        estimatedItemSize={250}
-        contentContainerStyle={{ paddingBottom: 50 }}
-      />
-    </View>
+    <FlatList
+      data={products}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+      renderItem={({ item }) => (
+        <ProductCard
+          id={item.id}
+          title={item.title}
+          images={item.images}
+          price={item.price}
+          rating={item.rating}
+          brand={item.brand}
+          navigationFunc={navigationFunc}
+        />
+      )}
+      keyExtractor={(item) => item.id.toString()}
+      contentContainerStyle={{ paddingBottom: 50 }}
+    />
   );
 };
 
@@ -37,5 +83,7 @@ export default ProductsList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
