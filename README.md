@@ -16,7 +16,7 @@ A React Native app that fetches products from dummy JSON API and displays them.
 
 ### Prerequisites
 
-- Used node version 18.18. Please use nvm to switch to the desired version.
+- Used node version 18.18. You can use nvm to switch to this version.
 
 ### Installation & Starting the app
 
@@ -31,7 +31,7 @@ yarn install
 ```
 npx expo start
 ```
-Then follow the screen instructions
+Then press i to run on ios
 
 ### Running tests
 ```
