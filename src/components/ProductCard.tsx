@@ -1,11 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import { ProductCardType, ProductDetails } from "../app/types";
+import { View, StyleSheet, Pressable } from "react-native";
+import { ProductCardType } from "../app/types";
 import { colors, fontSizes, mainStyles } from "../styles/theme";
 import { Image } from "expo-image";
 import StyledText from "./common/styledText";
 import { AntDesign } from "@expo/vector-icons";
-import { MainNavigationProp, MainRoutes } from "../navigation/Types";
 
 type ProductCardProps = ProductCardType & {
   navigationFunc: (id: number) => void;

@@ -1,9 +1,9 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import "@testing-library/jest-native/extend-expect";
-import ProductCard from "./ProductCard";
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const mockNavFunc = jest.fn((id) => {});
+import { ProductCard } from "../components";
+
+const mockNavFunc = jest.fn();
 
 describe("renders Products card", () => {
   it("displays the passed props with all detials", () => {
@@ -27,7 +27,7 @@ describe("renders Products card", () => {
 
     const image = getByTestId("product-image");
 
-    expect(image).not.toBeNull(); // Ensure the image is rendered
+    expect(image).not.toBeNull();
     expect(image.props.source[0].uri).toBe(
       "https://i.dummyjson.com/data/products/1/1.jpg",
     );

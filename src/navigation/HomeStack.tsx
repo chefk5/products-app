@@ -1,10 +1,8 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { MainNavigationProp, MainRoutes, MainStack } from "./Types";
+import { MainRoutes, MainStack } from "./Types";
 import Products from "../screens/Products";
 import Details from "../screens/Details";
 import { NavigationContainer } from "@react-navigation/native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { colors } from "../styles/theme";
 
 function HomeStack() {

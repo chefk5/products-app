@@ -1,14 +1,9 @@
 import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { colors, fontSizes, mainStyles } from "../styles/theme";
 import StyledText from "../components/common/styledText";
-import {
-  MainStackParamList,
-  MainRoutes,
-  MainNavigationProp,
-} from "../navigation/Types";
-import { Image } from "expo-image";
-import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+import { MainStackParamList, MainRoutes } from "../navigation/Types";
+import { StackScreenProps } from "@react-navigation/stack";
 import { MotiImage } from "moti";
 
 const { height } = Dimensions.get("window");

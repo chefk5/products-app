@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import React from "react";
+import { View, TextInput, StyleSheet } from "react-native";
 import { mainStyles } from "../styles/theme";
 
-const SearchBar = ({ onSearch, setTerm, handleSearch, searchTerm }: any) => {
+type SearchBarProps = {
+  setTerm: (term: string) => void;
+  searchTerm: string;
+};
+
+const SearchBar = ({ setTerm, searchTerm }: SearchBarProps) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <TextInput

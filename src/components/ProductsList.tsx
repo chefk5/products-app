@@ -1,11 +1,7 @@
-import { View, Text, StyleSheet, FlatList, RefreshControl } from "react-native";
-import React, { FC, useState } from "react";
+import { View, StyleSheet, FlatList, RefreshControl } from "react-native";
+import React, { useState } from "react";
 import ProductCard from "./ProductCard";
-import { Product, ProductCardType } from "../app/types";
-import { FlashList } from "@shopify/flash-list";
-import { MainNavigationProp, MainRoutes } from "../navigation/Types";
-import { colors, fontSizes } from "../styles/theme";
-import StyledText from "./common/styledText";
+import { Product } from "../app/types";
 import ErrorComponent from "./ErrorCompoenent";
 import Loader from "./Loader";
 
@@ -13,9 +9,9 @@ interface IProductsList {
   products: Product[];
   navigationFunc: (id: number) => void;
   onRetry: () => void;
-  isError: boolean;
-  isLoading: boolean;
-  isSearchTerm: boolean;
+  isError?: boolean;
+  isLoading?: boolean;
+  isSearchTerm?: boolean;
 }
 
 const ProductsList = ({
