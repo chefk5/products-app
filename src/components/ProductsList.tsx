@@ -53,6 +53,7 @@ const ProductsList = ({
     );
   }
   return (
+    // Should have used flashlist but faced an issue while testing
     <FlatList
       data={products}
       refreshControl={
