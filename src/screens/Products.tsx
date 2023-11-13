@@ -33,8 +33,8 @@ const Products = ({ navigation }: ProductsProps) => {
     data: searchedData = [],
     refetch: refetchSearch,
   } = useQuery({
-    queryKey: ["searchProducts", debouncedSearchValue], // Ensure the variable name matches the used one
-    queryFn: () => searchProducts(debouncedSearchValue), // Wrap the searchProducts call in an arrow function
+    queryKey: ["searchProducts", debouncedSearchValue],
+    queryFn: () => searchProducts(debouncedSearchValue),
   });
 
   const openDetailsScreen = (id: number) => {

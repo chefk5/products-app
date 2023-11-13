@@ -11,7 +11,7 @@ function HomeStack() {
       <MainStack.Navigator
         screenOptions={{
           headerStyle: {
-            shadowColor: "transparent", // this covers iOS
+            shadowColor: "transparent",
             elevation: 0,
           },
           headerTintColor: colors.textPrimary,
