@@ -42,14 +42,10 @@ yarn run test
 
 The video below is an overview of what the app is about.
 
-https://github.com/chefk5/products-app/assets/18053083/dffc4ef6-20e9-4207-aa8f-1909bac2dbfa
-
+https://github.com/chefk5/products-app/assets/18053083/ba2c4b34-1b67-4096-869e-a84b7f176361
 
 In case of errors in the API or no products are found while searching, the following screens are shown:
 
-![Screenshot 2023-11-13 at 20 11 00](https://github.com/chefk5/products-app/assets/18053083/3d32514e-d05c-4e78-8bac-01ad0eddbf2c)
-![Screenshot 2023-11-13 at 20 11 43](https://github.com/chefk5/products-app/assets/18053083/972badbf-f498-42b5-9f49-bcdec424a8c6)
-
-
-
+![Screenshot 2023-11-13 at 20 11 00](https://github.com/chefk5/products-app/assets/18053083/ebf07ac7-c714-49ac-babd-064cd6c777ed)
+![Screenshot 2023-11-13 at 20 11 43](https://github.com/chefk5/products-app/assets/18053083/c63194d7-d1c7-490f-9dbe-1626e8ac5164)
 
