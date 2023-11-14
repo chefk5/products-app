@@ -12,6 +12,9 @@ A React Native app that fetches products from dummy JSON API and displays them.
 - GitHub Actions to run tests on every commit
 - Moti to animate the image in the Details screen
 
+## Possible Improvements
+In the case of a larger application, the selected item would be stored in redux instead of being passed as params in navigation.
+
 ## Getting Started
 
 ### Prerequisites
